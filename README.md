@@ -9,6 +9,10 @@
 
 ## 화면
 
+| 연대별 흐름 | 핵심 키워드 | 주제 | 키워드 |
+|---|---|---|---|
+| ![](docs/screenshots/1_eras.png) | ![](docs/screenshots/2_keywords.png) | ![](docs/screenshots/3_topic.png) | ![](docs/screenshots/4_keyword.png) |
+
 - **홈** — 한국사 / 세계사 탭, 그 안에서 두 가지 보기
   - **연대별 흐름**: 시대마다 한 줄 요약과 주요 주제 (가장 간단한 필수 흐름)
   - **핵심 키워드**: 시대와 상관없이 키워드만 모아 분류(인물·사건·제도·문화 …) 칩과 가나다 초성으로 정리
@@ -36,6 +40,9 @@ python tools/build_content.py          # 원고 → app/src/main/assets/history.
 ```
 
 ## 빌드
+
+동작 확인: Actions 의 **Smoke test (emulator)** 를 수동 실행하면 에뮬레이터에서 앱을 띄워 주요 화면을 캡처합니다(`tools/smoke.sh`).
+
 
 `main` 에 push 하면 GitHub Actions 가 원고 검사 → APK 빌드 → `v{versionName}` 릴리스에 APK 를 올립니다.
 버전은 `app/build.gradle.kts` 의 `versionName` / `versionCode` 를 올리면 새 릴리스가 생깁니다.
