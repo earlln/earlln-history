@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 펼친 책 위의 시간 축 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 왼쪽 쪽 -->
+    <path
+        android:fillColor="#FBF7F1"
+        android:pathData="M30,38 C38,35 46,35 53,39 L53,72 C46,68 38,68 30,71 Z" />
+    <!-- 오른쪽 쪽 -->
+    <path
+        android:fillColor="#F1E4D2"
+        android:pathData="M55,39 C62,35 70,35 78,38 L78,71 C70,68 62,68 55,72 Z" />
+    <!-- 시간 축 점 -->
+    <path
+        android:fillColor="#D9A441"
+        android:pathData="M38,52 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0 M54,52 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0 M70,52 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+    <path
+        android:fillColor="#D9A441"
+        android:pathData="M38,51 L70,51 L70,53 L38,53 Z" />
+</vector>

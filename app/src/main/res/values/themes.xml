@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.EarllnHistory" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#7A3E1D</item>
+        <item name="android:windowBackground">#FBF7F1</item>
+    </style>
+    <color name="ic_launcher_background">#7A3E1D</color>
+</resources>
