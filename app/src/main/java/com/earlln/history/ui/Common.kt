@@ -9,6 +9,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
@@ -48,7 +50,52 @@ fun initialOf(title: String): String {
     return "#"
 }
 
-/** [[id|글자]] 를 눌러서 들어갈 수 있는 링크로 바꿔 보여 준다 */
+/** 링크 아닌 낱말: 한글·영문·숫자 덩어리 */
+private val WORD_REGEX = Regex("[가-힣A-Za-z0-9]+")
+
+/** 낱말 끝의 조사·어미를 떼어 검색어로 (남는 글자가 두 자 이상일 때만) */
+private val ENDINGS = listOf(
+    "에서는", "으로는", "에서", "으로", "에게", "까지", "부터", "처럼", "보다", "이다", "였다", "했다", "하여", "하고", "하는", "하며", "되어", "되었다",
+    "을", "를", "은", "는", "이", "가", "의", "에", "로", "와", "과", "도", "만", "한", "된",
+)
+
+fun searchTerm(word: String): String {
+    for (e in ENDINGS) {
+        if (word.endsWith(e) && word.length - e.length >= 2) return word.dropLast(e.length)
+    }
+    return word
+}
+
+fun googleUrl(term: String): String =
+    "https://www.google.com/search?q=" + java.net.URLEncoder.encode(term, "UTF-8")
+
+/** 링크 아닌 글을 낱말마다 구글 검색 링크로 붙인다 (숫자만인 낱말은 그냥 글자) */
+private fun AnnotatedString.Builder.appendSearchable(
+    text: String,
+    styles: TextLinkStyles,
+    onSearch: (String) -> Unit,
+) {
+    var last = 0
+    for (m in WORD_REGEX.findAll(text)) {
+        append(text.substring(last, m.range.first))
+        val word = m.value
+        if (word.all { it.isDigit() }) {
+            append(word)
+        } else {
+            val term = searchTerm(word)
+            withLink(LinkAnnotation.Clickable(tag = "search:$term", styles = styles) { onSearch(term) }) {
+                append(word)
+            }
+        }
+        last = m.range.last + 1
+    }
+    append(text.substring(last))
+}
+
+/**
+ * [[id|글자]] 는 앱 안 항목으로 들어가는 링크(밑줄),
+ * 나머지 낱말은 누르면 구글 검색으로 넘어가는 링크(겉모양은 보통 글자, 누를 때만 표시)로 보여 준다.
+ */
 @Composable
 fun LinkedText(
     text: String,
@@ -66,10 +113,16 @@ fun LinkedText(
         ),
         pressedStyle = SpanStyle(background = MaterialTheme.colorScheme.primaryContainer),
     )
+    val searchStyle = TextLinkStyles(
+        pressedStyle = SpanStyle(background = MaterialTheme.colorScheme.secondaryContainer),
+    )
+    val uriHandler = LocalUriHandler.current
+    // 브라우저가 없는 기기에서도 앱이 죽지 않게
+    val onSearch: (String) -> Unit = { term -> runCatching { uriHandler.openUri(googleUrl(term)) } }
     val annotated = buildAnnotatedString {
         var last = 0
         for (m in LINK_REGEX.findAll(text)) {
-            append(text.substring(last, m.range.first))
+            appendSearchable(text.substring(last, m.range.first), searchStyle, onSearch)
             val id = m.groupValues[1].trim()
             val target = repo.get(id)
             val label = m.groupValues[2].ifBlank { target?.title ?: id }
@@ -78,11 +131,11 @@ fun LinkedText(
                     append(label)
                 }
             } else {
-                append(label)
+                appendSearchable(label, searchStyle, onSearch)
             }
             last = m.range.last + 1
         }
-        append(text.substring(last))
+        appendSearchable(text.substring(last), searchStyle, onSearch)
     }
     Text(annotated, modifier = modifier, style = style, color = color)
 }

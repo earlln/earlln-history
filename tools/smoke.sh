@@ -65,6 +65,10 @@ tap_text "고려의 성립과 통치 체제" && shot 05_topic_goryeo_early
 tap_text "<태조: 호족" && shot 05b_link_taejo
 adb shell input keyevent KEYCODE_BACK; sleep 1
 tap_text "=광종" && shot 06_key_gwangjong
+# 밑줄 없는 낱말 → 구글 검색으로 넘어가는지
+tap_text "<노비안검법(956)" && sleep 4 && shot 06b_google_search
+adb shell dumpsys activity activities | grep -m1 -E "topResumedActivity|mResumedActivity" | tee "$OUT/resumed_after_word_tap.txt"
+adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1; sleep 2
 tap_text "처음으로" && sleep 1
 tap_text "세계사" && shot 07_world_eras
 tap_text "핵심 키워드" && shot 08_world_keywords

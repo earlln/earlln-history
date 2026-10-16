@@ -82,7 +82,10 @@ fun NodeScreen(repo: HistoryRepository, id: String, open: (String) -> Unit) {
                 if (node.category.isNotBlank()) Tag(node.category, cs.surfaceVariant, cs.onSurfaceVariant)
             }
             Spacer(Modifier.height(6.dp))
-            Text(node.title, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+            LinkedText(
+                node.title, repo, open,
+                style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
+            )
             if (node.period.isNotBlank()) {
                 Text(node.period, style = MaterialTheme.typography.titleSmall, color = cs.primary)
             }
