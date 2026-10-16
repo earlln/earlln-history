@@ -7,6 +7,11 @@
 [Releases](https://github.com/earlln/earlln-history/releases) 에서 최신 `EarllnHistory-v*.apk` 를 휴대폰으로 내려받아 설치합니다.
 (설정에서 "출처를 알 수 없는 앱 설치"를 허용해야 합니다. 지금은 CI 디버그 서명이라 새 버전을 깔 때 기존 앱을 지우고 설치해야 할 수 있습니다.)
 
+## 아이폰 (웹앱)
+
+아이폰 Safari 에서 **https://earlln.github.io/earlln-history/** 를 열고 공유 버튼 → **홈 화면에 추가** 하면 앱처럼 아이콘으로 실행됩니다.
+한 번 열어 두면 인터넷이 없어도 볼 수 있습니다. 안드로이드 앱과 같은 내용 · 같은 화면 구성이며 `main` 에 push 하면 자동으로 새로 배포됩니다(`web/`, `tools/build_web.py`, `.github/workflows/pages.yml`).
+
 ## 화면
 
 | 연대별 흐름 | 핵심 키워드 | 주제 | 키워드 |

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Earlln History</title>
+  <meta name="description" content="한국사 · 세계사 핵심 요약 — 시대 → 주제 → 키워드">
+  <meta name="theme-color" content="#F4ECE2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#241D18" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Earlln History">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css?v=__BUILD__">
+</head>
+<body>
+  <header class="bar">
+    <button id="back" class="icon" aria-label="뒤로" hidden>
+      <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+    </button>
+    <a class="brand" href="#/">Earlln History<small id="ver">v__VERSION__</small></a>
+    <a id="search-btn" class="icon" href="#/search" aria-label="검색">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+    </a>
+    <a id="home-btn" class="icon" href="#/" aria-label="처음으로" hidden>
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    </a>
+  </header>
+  <main id="view"><p class="loading">불러오는 중…</p></main>
+  <script src="app.js?v=__BUILD__"></script>
+</body>
+</html>

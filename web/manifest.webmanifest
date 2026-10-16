@@ -1,0 +1,16 @@
+{
+  "name": "Earlln History",
+  "short_name": "Earlln History",
+  "description": "한국사 · 세계사 핵심 요약",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF7F1",
+  "theme_color": "#F4ECE2",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
