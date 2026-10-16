@@ -29,6 +29,7 @@ import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.earlln.history.BuildConfig
 import com.earlln.history.data.HistoryRepository
@@ -80,12 +81,17 @@ fun EarllnApp(repo: HistoryRepository) {
                             "Earlln History",
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.primary,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f, fill = false),
                         )
                         Spacer(Modifier.width(6.dp))
                         Text(
                             "v${BuildConfig.VERSION_NAME}",
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 1,
+                            softWrap = false,
                             modifier = Modifier.padding(bottom = 3.dp),
                         )
                     }

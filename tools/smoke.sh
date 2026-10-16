@@ -68,7 +68,7 @@ tap_text "=광종" && shot 06_key_gwangjong
 tap_text "처음으로" && sleep 1
 tap_text "세계사" && shot 07_world_eras
 tap_text "핵심 키워드" && shot 08_world_keywords
-tap_text "=프랑스 혁명" && shot 09_world_key_french_rev
+tap_text "=나폴레옹" && shot 09_world_key_napoleon
 tap_text "검색" && sleep 1 && adb shell input text "1919" && shot 10_search
 
 if adb shell pidof $PKG >/dev/null; then echo "앱 살아 있음"; else echo "앱이 죽었음"; fi
